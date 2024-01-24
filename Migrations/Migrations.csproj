@@ -14,9 +14,11 @@
   <ItemGroup>
     <None Remove="Scripts\S202304151341_InitialScript.SQL" />
     <None Remove="Scripts\S202305131100_BookTable.SQL" />
+    <None Remove="Scripts\S202401241100_DatabaseChanges.SQL" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\S202401241100_DatabaseChanges.SQL" />
     <EmbeddedResource Include="Scripts\S202305131100_BookTable.SQL" />
     <EmbeddedResource Include="Scripts\S202304151341_InitialScript.SQL" />
   </ItemGroup>

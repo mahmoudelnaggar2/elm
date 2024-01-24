@@ -2,4 +2,4 @@
 
 namespace Application.Books.Queries;
 
-public sealed record BooksSearchQuery(string? SearchKey) : IQuery<IEnumerable<BookResponse>>;
+public sealed record BooksSearchQuery(string? SearchKey, int PageNumber, int PageSize) : IQuery<IEnumerable<BookResponse>>;

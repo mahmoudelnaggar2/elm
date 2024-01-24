@@ -1,0 +1,20 @@
+<div class="container mt-5">
+
+  <h4>Book Search</h4>
+
+<hr />
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Book Info" 
+    aria-label="Book Info" [(ngModel)]="searchInput">
+    <button class="btn btn-info" type="button"
+    (click)="searchForBook()">
+        Search
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+<hr />
+
+<app-book-list [searchKey]="searchKey"></app-book-list>
+</div>  
+

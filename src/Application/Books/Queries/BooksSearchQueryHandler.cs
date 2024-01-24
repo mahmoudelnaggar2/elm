@@ -15,7 +15,8 @@ namespace Application.Books.Queries
 
         public async Task<Result<IEnumerable<BookResponse>>> Handle(BooksSearchQuery request, CancellationToken cancellationToken)
         {
-            var result = await _bookRepository.BooksSearch(request.SearchKey!, cancellationToken);
+            var result = await _bookRepository.BooksSearch(request.SearchKey!,
+                request.PageNumber, request.PageSize, cancellationToken);
 
             var response = new List<BookResponse>();
 

@@ -3,6 +3,7 @@ using Presentation.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Application.Books.Queries;
+using System.Threading;
 
 namespace Presentation.Controllers;
 
@@ -16,14 +17,12 @@ public sealed class BooksController : ApiController
 
     [HttpGet()]
     public async Task<IActionResult> BooksSearch(
-        string? searchKey,
-        CancellationToken cancellationToken)
+        [FromQuery] string? searchKey,
+        [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
     {
-        var query = new BooksSearchQuery(searchKey);
+        var query = new BooksSearchQuery(searchKey, pageNumber, pageSize);
 
-        Result<IEnumerable<BookResponse>> response = await Sender.Send(
-            query,
-            cancellationToken);
+        Result<IEnumerable<BookResponse>> response = await Sender.Send(query);
 
         return response.IsSuccess
             ? Ok(response.Value)

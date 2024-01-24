@@ -1,0 +1,32 @@
+<div *ngIf="isLoading; else dataContent">   
+    {{loadingMessage}}
+  </div>
+
+<ng-template #dataContent>
+
+<div class="table-responsive">
+    <table class="table" style="overflow-y: auto;max-height:100px;" >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Publish Date</th>
+          <th scope="col">Description</th>
+          <th scope="col">Cover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{book.id}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publishDate}}</td>
+          <td>{{book.description}}</td>
+          <td>
+            <img [src]="book.coverBase64" alt="Image" width="80" height="80"></td>
+        </tr>      
+      </tbody>
+    </table>
+  </div>
+</ng-template>

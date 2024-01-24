@@ -15,13 +15,18 @@ public class BookRepository : IBookRepository
         _connectionFactory = connectionFactory;
     }   
 
-    public async Task<IEnumerable<Book>> BooksSearch(string serachKey, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Book>> BooksSearch(string serachKey, int pageNumber, int pageSize,
+        CancellationToken cancellationToken = default)
     {        
         await using SqlConnection sqlConnection = _connectionFactory
             .CreateSqlConnection();
 
         const string StoredProcedureName = "BooksSearch";
-        var procedureParametars = new { SearchKey = serachKey };        
+        var procedureParametars = new { 
+            SearchKey = serachKey,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };        
 
         var results = await sqlConnection.QueryAsync<Book>(StoredProcedureName, procedureParametars, 
             commandType: CommandType.StoredProcedure);
